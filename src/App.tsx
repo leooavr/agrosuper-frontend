@@ -1,5 +1,4 @@
 import { ThemeProvider } from "@mui/material/styles";
-
 import { MiniDrawer } from "./components";
 import { theme } from "./styles";
 
