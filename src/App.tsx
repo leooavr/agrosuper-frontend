@@ -1,8 +1,12 @@
-
+import { ThemeProvider } from "@mui/material/styles";
+import { MiniDrawer } from "./components";
+import { theme } from "./styles";
 
 function App() {
   return (
-   <h1>Hola Agrosuper</h1>
+    <ThemeProvider theme={theme}>
+      <MiniDrawer />
+    </ThemeProvider>
   );
 }
 
