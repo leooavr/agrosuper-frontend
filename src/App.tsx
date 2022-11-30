@@ -1,12 +1,12 @@
 import React from 'react';
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Provider } from 'react-redux';
+
 import { MiniDrawer } from './components';
 import { store } from './redux/store';
 import { theme } from './styles';
 
-function App() {
+const App = () => {
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
