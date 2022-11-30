@@ -12,6 +12,7 @@ export const AppBar = () => {
     const handleDrawerOpen = () => {
         dispatch(openCloseDrawer());
     };
+
     return (
         <AppBarStyle position="fixed" open={openDrawer} drawerWidth={drawerWidth}>
             <Toolbar>
