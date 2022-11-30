@@ -32,6 +32,7 @@ const columns: GridColDef[] = [
 
 export const MiniDrawer = () => {
     const theme = useTheme();
+    console.log(theme);
     const dispatch = useAppDispatch();
     const { openDrawer, drawerWidth } = useAppSelector(uiState);
 
