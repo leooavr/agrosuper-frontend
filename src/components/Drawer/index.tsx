@@ -11,28 +11,15 @@ import {
     ListItemIcon
 } from '@mui/material';
 import { ChevronLeft, ChevronRight, Dashboard, Backup, Settings } from '@mui/icons-material';
-import { DataGrid, GridRowsProp, GridColDef, esES } from '@mui/x-data-grid';
 
 import { Drawer, DrawerHeader } from './styles';
-import { AppBar } from '../Appbar';
+import { AppBar } from '../AppBar';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
 import { uiState, openCloseDrawer } from '../../redux/ui/uiSlice';
-
-const rows: GridRowsProp = [
-    { id: 1, col1: 'Hello', col2: 'World', col3: 'asdfj' },
-    { id: 2, col1: 'DataGridPro', col2: 'is Awesome', col3: 'asdfj' },
-    { id: 3, col1: 'MUI', col2: 'is Amazing', col3: 'asdfj' }
-];
-
-const columns: GridColDef[] = [
-    { field: 'col1', headerName: 'Column 1', width: 150, flex: 1 },
-    { field: 'col2', headerName: 'Column 2', width: 150, flex: 1 },
-    { field: 'col3', headerName: 'Column 3', width: 150, flex: 1 }
-];
+import { Outlet } from 'react-router-dom';
 
 export const MiniDrawer = () => {
     const theme = useTheme();
-    console.log(theme);
     const dispatch = useAppDispatch();
     const { openDrawer, drawerWidth } = useAppSelector(uiState);
 
@@ -77,15 +64,10 @@ export const MiniDrawer = () => {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-                <div style={{ height: 300, width: '100%' }}>
-                    <DataGrid
-                        rows={rows}
-                        columns={columns}
-                        localeText={esES.components.MuiDataGrid.defaultProps.localeText}
-                        autoHeight
-                    />
-                </div>
+                <Outlet />
             </Box>
         </Box>
     );
 };
+
+export default MiniDrawer;
