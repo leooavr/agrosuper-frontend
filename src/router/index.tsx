@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Table, MiniDrawer } from '../components';
+import { MiniDrawer } from '../components';
 import { NotFound, Login } from '../pages';
 
 export const router = createBrowserRouter([
@@ -20,11 +20,19 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <Table />
+                        element: <h1>inicio</h1>
                     },
                     {
-                        path: 'users',
-                        element: <h1>DASHBOARD USERS</h1>
+                        path: 'regions',
+                        element: <h1>DASHBOARD REGIONES</h1>
+                    },
+                    {
+                        path: 'provinces',
+                        element: <h1>DASHBOARD PROVINCIAS</h1>
+                    },
+                    {
+                        path: 'communes',
+                        element: <h1>DASHBOARD COMUNAS</h1>
                     }
                 ]
             }

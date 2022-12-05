@@ -5,26 +5,37 @@ import {
     List,
     Divider,
     IconButton,
-    ListItem,
     ListItemButton,
     ListItemText,
-    ListItemIcon
+    ListItemIcon,
+    Icon,
+    Collapse
 } from '@mui/material';
-import { ChevronLeft, ChevronRight, Dashboard, Backup, Settings } from '@mui/icons-material';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { ChevronLeft, ChevronRight, ExpandLess, ExpandMore } from '@mui/icons-material';
 
 import { Drawer, DrawerHeader } from './styles';
 import { AppBar } from '../AppBar';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
-import { uiState, openCloseDrawer } from '../../redux/ui/uiSlice';
-import { Outlet } from 'react-router-dom';
+import { uiState, openCloseDrawer, openCloseCollapse } from '../../redux/ui/uiSlice';
+import { routesDrawer, RouteDrawer, ChildrenRoute } from './routes';
 
 export const MiniDrawer = () => {
     const theme = useTheme();
     const dispatch = useAppDispatch();
-    const { openDrawer, drawerWidth } = useAppSelector(uiState);
+    const navigate = useNavigate();
+    const { openDrawer, drawerWidth, openCollapse } = useAppSelector(uiState);
 
     const handleDrawerOpen = () => {
         dispatch(openCloseDrawer());
+    };
+
+    const handleCollapseOpen = (index: number) => {
+        dispatch(openCloseCollapse(index));
+    };
+
+    const handleNavigation = (path: string) => {
+        navigate(`/dashboard/${path}`);
     };
 
     return (
@@ -38,27 +49,38 @@ export const MiniDrawer = () => {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {['Dashboard', 'Backup', 'Settings'].map((text, index) => (
-                        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                            <ListItemButton
-                                sx={{
-                                    minHeight: 48,
-                                    justifyContent: openDrawer ? 'initial' : 'center',
-                                    px: 2.5
-                                }}>
-                                <ListItemIcon
-                                    sx={{
-                                        minWidth: 0,
-                                        mr: openDrawer ? 3 : 'auto',
-                                        justifyContent: 'center'
-                                    }}>
-                                    {index === 0 && <Dashboard />}
-                                    {index === 1 && <Backup />}
-                                    {index === 2 && <Settings />}
+                    {routesDrawer.map(({ icon, name, childrens }: RouteDrawer, index) => (
+                        <>
+                            <ListItemButton onClick={() => handleCollapseOpen(index)} key={index}>
+                                <ListItemIcon>
+                                    <Icon>{icon}</Icon>
                                 </ListItemIcon>
-                                <ListItemText primary={text} sx={{ opacity: openDrawer ? 1 : 0 }} />
+                                <ListItemText primary={name} />
+                                {childrens?.length &&
+                                    (openCollapse[index] ? <ExpandLess /> : <ExpandMore />)}
                             </ListItemButton>
-                        </ListItem>
+                            {childrens?.length && (
+                                <Collapse in={openCollapse[index]} timeout="auto" unmountOnExit>
+                                    {childrens.map(
+                                        (
+                                            { iconChildren, nameChildren, path }: ChildrenRoute,
+                                            index
+                                        ) => (
+                                            <List component="div" disablePadding key={index}>
+                                                <ListItemButton
+                                                    sx={{ pl: 4 }}
+                                                    onClick={() => handleNavigation(path)}>
+                                                    <ListItemIcon>
+                                                        <Icon>{iconChildren}</Icon>
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={nameChildren} />
+                                                </ListItemButton>
+                                            </List>
+                                        )
+                                    )}
+                                </Collapse>
+                            )}
+                        </>
                     ))}
                 </List>
             </Drawer>
