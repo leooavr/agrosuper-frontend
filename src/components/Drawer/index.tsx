@@ -9,18 +9,19 @@ import {
     ListItemText,
     ListItemIcon,
     Icon,
-    Collapse
+    Collapse,
+    Drawer as DraweMui
 } from '@mui/material';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ExpandLess, ExpandMore } from '@mui/icons-material';
 
-import { Drawer, DrawerHeader } from './styles';
+import { DrawerHeader, Main } from './styles';
 import { AppBar } from '../AppBar';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
 import { uiState, openCloseDrawer, openCloseCollapse } from '../../redux/ui/uiSlice';
 import { routesDrawer, RouteDrawer, ChildrenRoute } from './routes';
 
-export const MiniDrawer = () => {
+export const Drawer = () => {
     const theme = useTheme();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -41,7 +42,18 @@ export const MiniDrawer = () => {
     return (
         <Box sx={{ display: 'flex' }}>
             <AppBar />
-            <Drawer variant="permanent" open={openDrawer} drawerWidth={drawerWidth}>
+            <DraweMui
+                sx={{
+                    width: drawerWidth,
+                    flexShrink: 0,
+                    '& .MuiDrawer-paper': {
+                        width: drawerWidth,
+                        boxSizing: 'border-box'
+                    }
+                }}
+                variant="persistent"
+                anchor="left"
+                open={openDrawer}>
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerOpen}>
                         {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
@@ -83,13 +95,13 @@ export const MiniDrawer = () => {
                         </>
                     ))}
                 </List>
-            </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            </DraweMui>
+            <Main open={openDrawer} drawerWidth={drawerWidth}>
                 <DrawerHeader />
                 <Outlet />
-            </Box>
+            </Main>
         </Box>
     );
 };
 
-export default MiniDrawer;
+export default Drawer;

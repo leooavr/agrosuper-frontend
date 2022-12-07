@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { MiniDrawer } from '../components';
+import { Drawer } from '../components';
 import { NotFound, Login } from '../pages';
 
 export const router = createBrowserRouter([
@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <MiniDrawer />,
+        element: <Drawer />,
         errorElement: <NotFound />,
         children: [
             {
