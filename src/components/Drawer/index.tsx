@@ -15,7 +15,7 @@ import {
 import { Outlet, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ExpandLess, ExpandMore } from '@mui/icons-material';
 
-import { DrawerHeader, Main } from './styles';
+import { DrawerHeader, Main, StyledLogo } from './styles';
 import { AppBar } from '../AppBar';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
 import { uiState, openCloseDrawer, openCloseCollapse } from '../../redux/ui/uiSlice';
@@ -49,12 +49,17 @@ export const Drawer = () => {
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
                         boxSizing: 'border-box'
+                    },
+                    '& div': {
+                        bgcolor: theme.palette.primary.main,
+                        color: theme.palette.secondary.contrastText
                     }
                 }}
                 variant="persistent"
                 anchor="left"
                 open={openDrawer}>
                 <DrawerHeader>
+                    <StyledLogo src="assets/images/logo-agro.webp" />
                     <IconButton onClick={handleDrawerOpen}>
                         {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
                     </IconButton>

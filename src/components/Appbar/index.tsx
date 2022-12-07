@@ -29,7 +29,7 @@ export const AppBar = () => {
                     <Menu />
                 </IconButton>
                 <Typography variant="h6" noWrap component="div">
-                    Agrosuper
+                    Sistema de administración de datos Agrosuper
                 </Typography>
             </Toolbar>
         </AppBarStyle>

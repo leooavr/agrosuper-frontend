@@ -1,5 +1,11 @@
 import { Theme, CSSObject, styled } from '@mui/material/styles';
 
+export const StyledLogo = styled('img')(() => ({
+    width: '5px',
+    marginLeft: '1rem',
+    flex: 1
+}));
+
 export const openedMixin = (theme: Theme, drawerWidth: number): CSSObject => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
