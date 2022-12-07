@@ -72,7 +72,12 @@ export const Drawer = () => {
                                 <ListItemIcon>
                                     <Icon>{icon}</Icon>
                                 </ListItemIcon>
-                                <ListItemText primary={name} />
+                                <ListItemText
+                                    primary={name}
+                                    onClick={() =>
+                                        name === 'Inicio' ? handleNavigation('') : null
+                                    }
+                                />
                                 {childrens?.length &&
                                     (openCollapse[index] ? <ExpandLess /> : <ExpandMore />)}
                             </ListItemButton>

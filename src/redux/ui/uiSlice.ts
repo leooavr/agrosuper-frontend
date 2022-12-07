@@ -6,12 +6,14 @@ export interface UiState {
     drawerWidth: number;
     openDrawer: boolean;
     openCollapse: boolean[];
+    anchorEl: null | HTMLElement;
 }
 
 const initialState: UiState = {
     drawerWidth: 240,
     openDrawer: false,
-    openCollapse: [false]
+    openCollapse: [false],
+    anchorEl: null
 };
 
 export const uiSlice = createSlice({
@@ -31,10 +33,17 @@ export const uiSlice = createSlice({
             );
             newStateCollapse[payload] = !state.openCollapse[payload];
             state.openCollapse = newStateCollapse;
+        },
+        closeMenu: (state) => {
+            state.anchorEl = null;
+        },
+        openMenu: (state, action: PayloadAction<any>) => {
+            const { payload } = action;
+            state.anchorEl = payload;
         }
     }
 });
 
-export const { openCloseDrawer, openCloseCollapse } = uiSlice.actions;
+export const { openCloseDrawer, openCloseCollapse, closeMenu, openMenu } = uiSlice.actions;
 export const uiState = (state: RootState) => state.ui;
 export const uiReducer = uiSlice.reducer;

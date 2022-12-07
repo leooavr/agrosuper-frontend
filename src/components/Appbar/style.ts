@@ -23,3 +23,11 @@ export const AppBarStyle = styled(MuiAppBar, {
         })
     })
 }));
+
+export const StyledContent = styled('span')(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    flexGrow: 4,
+    color: theme.palette.secondary.contrastText
+}));
