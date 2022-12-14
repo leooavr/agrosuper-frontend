@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 
 import { AuthWrapper } from './styles';
+import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
+import { authState, login } from '../../redux/auth/authSlice';
 
 export const Login = () => {
+    const dispacth = useAppDispatch();
+    const { isLoading, error, isAuthenticated } = useAppSelector(authState);
+
     const formik = useFormik({
         initialValues: {
             rut: '',
@@ -15,10 +20,14 @@ export const Login = () => {
             rut: Yup.string().max(255).required('Rut es requerido'),
             password: Yup.string().max(255).required('Contraseña es requerida')
         }),
-        onSubmit: () => {
-            console.log('xd');
+        onSubmit: ({ rut, password }) => {
+            dispacth(login(rut, password));
         }
     });
+
+    useEffect(() => {
+        console.log(isAuthenticated);
+    }, [isLoading]);
 
     return (
         <AuthWrapper>
