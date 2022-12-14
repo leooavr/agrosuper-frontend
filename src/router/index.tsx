@@ -1,9 +1,11 @@
 import React from 'react';
 import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Drawer, Table } from '../components';
 import { NotFound, Login } from '../pages';
+import { PrivateRoutes } from './PrivateRouter';
+import { PublicRoutes } from './PublicRouter';
 
 const columnsRegions: GridColDef[] = [
     { field: 'col1', headerName: 'Numero', width: 150, flex: 1 },
@@ -29,15 +31,23 @@ const rowsRegions: GridRowsProp = [
     { id: 16, col1: 16, col2: 'Región de Ñuble' }
 ];
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
     {
         path: '/',
-        element: <Login />,
+        element: (
+            <PublicRoutes>
+                <Login />
+            </PublicRoutes>
+        ),
         errorElement: <NotFound />
     },
     {
         path: '/dashboard',
-        element: <Drawer />,
+        element: (
+            <PrivateRoutes>
+                <Drawer />
+            </PrivateRoutes>
+        ),
         errorElement: <NotFound />,
         children: [
             {
@@ -64,3 +74,7 @@ export const router = createBrowserRouter([
         ]
     }
 ]);
+
+export const AppRouter: React.FC = () => {
+    return <RouterProvider router={router} />;
+};

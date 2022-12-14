@@ -9,7 +9,7 @@ import { authState, login } from '../../redux/auth/authSlice';
 
 export const Login = () => {
     const dispacth = useAppDispatch();
-    const { isLoading, error, isAuthenticated } = useAppSelector(authState);
+    const { isLoading, error } = useAppSelector(authState);
 
     const formik = useFormik({
         initialValues: {
@@ -26,7 +26,15 @@ export const Login = () => {
     });
 
     useEffect(() => {
-        console.log(isAuthenticated);
+        if (error) {
+            alert('Error login');
+        }
+    }, [error]);
+
+    useEffect(() => {
+        if (isLoading) {
+            console.log('Carganado');
+        }
     }, [isLoading]);
 
     return (
