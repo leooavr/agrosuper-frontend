@@ -1,4 +1,4 @@
-import { GridColDef, GridRowsProp } from "@mui/x-data-grid";
+import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
 
 export const columnsBranchOffices: GridColDef[] = [
     { field: 'col6', headerName: 'Id', width: 150, flex: 1 },

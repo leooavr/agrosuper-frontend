@@ -15,7 +15,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ExpandLess, ExpandMore } from '@mui/icons-material';
 
 import { Drawer, DrawerHeader } from './styles';
-import { AppBar } from '../Appbar';
+import { AppBar } from '../AppBar';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
 import { uiState, openCloseDrawer, openCloseCollapse } from '../../redux/ui/uiSlice';
 import { routesDrawer, RouteDrawer, ChildrenRoute } from './routes';
