@@ -16,12 +16,8 @@
         "@types/node": "16.11.65",
         "@types/react": "18.0.21",
         "@types/react-dom": "18.0.6",
-<<<<<<< HEAD
-        "exceljs": "^4.3.0",
-=======
         "axios": "^1.2.1",
         "formik": "^2.2.9",
->>>>>>> 76defc8ed2162d26da01c95b3c6993e43453853c
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-redux": "8.0.5",
