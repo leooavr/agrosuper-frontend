@@ -14,6 +14,7 @@ export const Table: React.FC<TableProps> = ({ columns, rows, tableName }) => {
             <DataGrid
                 rows={rows}
                 columns={columns}
+                pageSize={10}
                 localeText={esES.components.MuiDataGrid.defaultProps.localeText}
                 autoHeight
             />

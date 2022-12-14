@@ -1,2 +1,2 @@
-export { MiniDrawer } from './Drawer';
+export { Drawer } from './Drawer';
 export { Table } from './Table';

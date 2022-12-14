@@ -1,17 +1,25 @@
 import React from 'react';
-import { Toolbar, IconButton, Typography } from '@mui/material';
-import { Menu } from '@mui/icons-material';
+import { Toolbar, IconButton, Typography, Menu, MenuItem, Divider } from '@mui/material';
+import { Menu as MenuIcon, AccountCircle } from '@mui/icons-material';
 
-import { AppBarStyle } from './style';
+import { AppBarStyle, StyledContent } from './style';
 import { useAppSelector, useAppDispatch } from '../../redux/store/hooks';
-import { uiState, openCloseDrawer } from '../../redux/ui/uiSlice';
+import { uiState, openCloseDrawer, closeMenu, openMenu } from '../../redux/ui/uiSlice';
 
 export const AppBar = () => {
     const dispatch = useAppDispatch();
-    const { openDrawer, drawerWidth } = useAppSelector(uiState);
+    const { openDrawer, drawerWidth, anchorEl } = useAppSelector(uiState);
 
     const handleDrawerOpen = () => {
         dispatch(openCloseDrawer());
+    };
+
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+        dispatch(openMenu(event.currentTarget));
+    };
+
+    const handleClose = () => {
+        dispatch(closeMenu());
     };
 
     return (
@@ -26,11 +34,40 @@ export const AppBar = () => {
                         marginRight: 5,
                         ...(openDrawer && { display: ' ' })
                     }}>
-                    <Menu />
+                    <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" noWrap component="div">
-                    Agrosuper
+                    Administración de datos Agrosuper
                 </Typography>
+                <StyledContent>
+                    <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={handleMenu}
+                        color="inherit">
+                        <AccountCircle />
+                    </IconButton>
+                    <Menu
+                        id="menu-appbar"
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right'
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right'
+                        }}
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}>
+                        <MenuItem>Juan Pablo Martínez</MenuItem>
+                        <Divider />
+                        <MenuItem onClick={handleClose}>Cerrar Sesión</MenuItem>
+                    </Menu>
+                </StyledContent>
             </Toolbar>
         </AppBarStyle>
     );

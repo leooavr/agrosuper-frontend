@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { MiniDrawer, Table } from '../components';
+import { Drawer, Table } from '../components';
 import { NotFound, Login } from '../pages';
 import {
     columnsRegions,
@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <MiniDrawer />,
+        element: <Drawer />,
         errorElement: <NotFound />,
         children: [
             {
