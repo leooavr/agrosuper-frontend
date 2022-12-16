@@ -38,6 +38,11 @@ export const routesDrawer: RouteDrawer[] = [
                 path: 'branchOffices',
                 nameChildren: 'Sucursales',
                 iconChildren: 'storemalldirectory'
+            },
+            {
+                path: 'form',
+                nameChildren: 'Formulario',
+                iconChildren: 'description'
             }
         ]
     },

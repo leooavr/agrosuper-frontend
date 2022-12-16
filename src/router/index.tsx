@@ -5,10 +5,7 @@ import { Drawer, Table } from '../components';
 import { NotFound, Login, Formulario } from '../pages';
 import { PrivateRoutes } from './PrivateRouter';
 import { PublicRoutes } from './PublicRouter';
-import { createBrowserRouter } from 'react-router-dom';
 
-import { Drawer, Table } from '../components';
-import { NotFound, Login } from '../pages';
 import {
     columnsRegions,
     rowsRegions,
@@ -68,7 +65,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'communes',
-                         element: (
+                        element: (
                             <Table
                                 rows={rowsCommunes}
                                 columns={columnsCommunes}
