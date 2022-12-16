@@ -1,4 +1,10 @@
 import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { Drawer, Table } from '../components';
+import { NotFound, Login, Formulario } from '../pages';
+import { PrivateRoutes } from './PrivateRouter';
+import { PublicRoutes } from './PublicRouter';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { Drawer, Table } from '../components';
@@ -14,15 +20,23 @@ import {
     rowsCommunes
 } from '../staticdata';
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
     {
         path: '/',
-        element: <Login />,
+        element: (
+            <PublicRoutes>
+                <Login />
+            </PublicRoutes>
+        ),
         errorElement: <NotFound />
     },
     {
         path: '/dashboard',
-        element: <Drawer />,
+        element: (
+            <PrivateRoutes>
+                <Drawer />
+            </PrivateRoutes>
+        ),
         errorElement: <NotFound />,
         children: [
             {
@@ -54,13 +68,17 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: 'communes',
-                        element: (
+                         element: (
                             <Table
                                 rows={rowsCommunes}
                                 columns={columnsCommunes}
                                 tableName={'Comunas'}
                             />
                         )
+                    },
+                    {
+                        path: 'form',
+                        element: <Formulario />
                     },
                     {
                         path: 'branchOffices',
@@ -129,3 +147,7 @@ export const router = createBrowserRouter([
         ]
     }
 ]);
+
+export const AppRouter: React.FC = () => {
+    return <RouterProvider router={router} />;
+};

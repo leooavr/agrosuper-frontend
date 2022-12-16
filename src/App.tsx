@@ -1,18 +1,18 @@
 import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Provider } from 'react-redux';
-import { RouterProvider } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { store } from './redux/store';
 import { theme } from './styles';
-import { router } from './router';
+import { AppRouter } from './router';
 
 const App = () => {
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <RouterProvider router={router} />
+                <AppRouter />
             </ThemeProvider>
         </Provider>
     );
