@@ -1,6 +1,7 @@
 import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Provider } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { store } from './redux/store';
 import { theme } from './styles';

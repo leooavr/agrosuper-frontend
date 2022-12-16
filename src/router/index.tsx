@@ -3,7 +3,7 @@ import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Drawer, Table } from '../components';
-import { NotFound, Login } from '../pages';
+import { NotFound, Login, Formulario } from '../pages';
 import { PrivateRoutes } from './PrivateRouter';
 import { PublicRoutes } from './PublicRouter';
 
@@ -68,6 +68,10 @@ const router = createBrowserRouter([
                     {
                         path: 'communes',
                         element: <Table rows={rowsRegions} columns={columnsRegions} />
+                    },
+                    {
+                        path: 'form',
+                        element: <Formulario />
                     }
                 ]
             }

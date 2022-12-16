@@ -9,5 +9,6 @@ interface PrivateRouterProps {
 export const PrivateRoutes: React.FC<PrivateRouterProps> = ({ children }) => {
     const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-    return isAuthenticated ? children : <Navigate to="/" />;
+    // return isAuthenticated ? children : <Navigate to="/" />;
+    return children;
 };
