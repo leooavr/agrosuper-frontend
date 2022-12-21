@@ -53,6 +53,14 @@ export const authSlice = createSlice({
             storageService.setAccessToken(payload.accessToken);
             storageService.setRefreshToken(payload.refreshToken);
         },
+        refreshSession: (state, action: PayloadAction<any>) => {
+            const { payload } = action;
+            state.isAuthenticated = true;
+            state.accessToken = payload.accessToken;
+            state.refreshToken = payload.refreshToken;
+            storageService.setAccessToken(payload.accessToken);
+            storageService.setRefreshToken(payload.refreshToken);
+        },
         loginFailed: (state) => {
             state.error = true;
             state.isLoading = false;
@@ -66,7 +74,8 @@ export const authSlice = createSlice({
     }
 });
 
-export const { isChecking, loginFailed, loginSucess, validateSession } = authSlice.actions;
+export const { isChecking, loginFailed, loginSucess, validateSession, refreshSession } =
+    authSlice.actions;
 
 export const login =
     (rut: string, password: string): AppThunk =>

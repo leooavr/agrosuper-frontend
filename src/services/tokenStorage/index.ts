@@ -5,7 +5,7 @@ export const getAccessToken = () => {
 };
 
 export const getRefreshToken = () => {
-    return localStorage.getItem(auth.access_token);
+    return localStorage.getItem(auth.refresh_token);
 };
 
 export const setAccessToken = (accessToken: string) => {
