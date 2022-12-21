@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Drawer, Table } from '../components';
 import { NotFound, Login, Formulario } from '../pages';
 import { PrivateRoutes } from './PrivateRouter';
 import { PublicRoutes } from './PublicRouter';
+import { storageService } from '../services';
+import { useAppDispatch } from '../redux/store/hooks';
+import { validateSession } from '../redux/auth/authSlice';
 
 import {
     columnsRegions,
@@ -146,5 +149,17 @@ const router = createBrowserRouter([
 ]);
 
 export const AppRouter: React.FC = () => {
+    const dispatch = useAppDispatch();
+
+    const accessToken = storageService.getAccessToken();
+    const refreshToken = storageService.getRefreshToken();
+
+    useEffect(() => {
+        const payload = {
+            accessToken,
+            refreshToken
+        };
+        dispatch(validateSession(payload));
+    }, [dispatch, accessToken, refreshToken]);
     return <RouterProvider router={router} />;
 };

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState, AppThunk } from '../store';
-import { authService } from '../../services';
+import { authService, storageService } from '../../services';
 
 export interface User {
     rut: string;
@@ -12,7 +12,8 @@ export interface User {
 export interface AuthState {
     isLoading: boolean;
     isAuthenticated: boolean;
-    token: string;
+    accessToken: string;
+    refreshToken: string;
     user: User;
     error: boolean;
 }
@@ -20,7 +21,8 @@ export interface AuthState {
 const initialState: AuthState = {
     isLoading: false,
     isAuthenticated: false,
-    token: '',
+    accessToken: '',
+    refreshToken: '',
     user: {
         rut: '',
         name: '',
@@ -35,6 +37,7 @@ export const authSlice = createSlice({
     reducers: {
         isChecking: (state) => {
             state.isLoading = !state.isLoading;
+            state.error = false;
         },
         loginSucess: (state, action: PayloadAction<any>) => {
             const { payload } = action;
@@ -45,17 +48,25 @@ export const authSlice = createSlice({
                 name: payload.name,
                 rut: payload.rut
             };
-            state.token = payload.token;
-            localStorage.setItem('token', payload.token);
+            state.accessToken = payload.accessToken;
+            state.refreshToken = payload.refreshToken;
+            storageService.setAccessToken(payload.accessToken);
+            storageService.setRefreshToken(payload.refreshToken);
         },
         loginFailed: (state) => {
             state.error = true;
             state.isLoading = false;
+        },
+        validateSession: (state, action: PayloadAction<any>) => {
+            const { payload } = action;
+            state.isAuthenticated = payload.accessToken ? true : false;
+            state.accessToken = payload.accessToken;
+            state.refreshToken = payload.refreshToken;
         }
     }
 });
 
-export const { isChecking, loginFailed, loginSucess } = authSlice.actions;
+export const { isChecking, loginFailed, loginSucess, validateSession } = authSlice.actions;
 
 export const login =
     (rut: string, password: string): AppThunk =>
