@@ -10,7 +10,7 @@ interface TableProps {
 export const Table: React.FC<TableProps> = ({ columns, rows, tableName }) => {
     return (
         <div style={{ height: 300, width: '100%' }}>
-            <h1>Tabla {tableName}</h1>
+            <h3>{tableName}</h3>
             <DataGrid
                 rows={rows}
                 columns={columns}
