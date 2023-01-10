@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Drawer, Table } from '../components';
-import { NotFound, Login, Formulario, Regions } from '../pages';
+import { NotFound, Login, Formulario, Regions, Province } from '../pages';
 import { PrivateRoutes } from './PrivateRouter';
 import { PublicRoutes } from './PublicRouter';
 import { storageService } from '../services';
@@ -10,8 +10,6 @@ import { useAppDispatch } from '../redux/store/hooks';
 import { validateSession } from '../redux/auth/authSlice';
 
 import {
-    columnsProvinces,
-    rowsProvinces,
     columnsBranchOffices,
     rowsBranchOffices,
     columnsCommunes,
@@ -50,13 +48,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'provinces',
-                        element: (
-                            <Table
-                                rows={rowsProvinces}
-                                columns={columnsProvinces}
-                                tableName={'Provincia'}
-                            />
-                        )
+                        element: <Province />
                     },
                     {
                         path: 'communes',

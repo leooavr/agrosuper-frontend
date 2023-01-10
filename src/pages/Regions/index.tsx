@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import { GridColDef } from '@mui/x-data-grid';
 
 import { Table } from '../../components';
-import { regionState } from '../../redux/regions/regionSlice';
+import { regionState, fecthRegions } from '../../redux/regions/regionSlice';
 import { useAppSelector, useAppDispatch } from '../../redux/store/hooks';
-import { fecthRegions } from '../../redux/regions/regionSlice';
 
 export const Regions = () => {
     const columnsRegions: GridColDef[] = [
@@ -21,13 +20,13 @@ export const Regions = () => {
 
     useEffect(() => {
         if (error) {
-            alert('Error login');
+            alert('Error Regions');
         }
     }, [error]);
 
     useEffect(() => {
         if (isLoading) {
-            console.log('Carganado');
+            console.log('Cargando');
         }
     }, [isLoading]);
 

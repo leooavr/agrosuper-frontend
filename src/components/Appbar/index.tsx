@@ -5,10 +5,12 @@ import { Menu as MenuIcon, AccountCircle } from '@mui/icons-material';
 import { AppBarStyle, StyledContent } from './style';
 import { useAppSelector, useAppDispatch } from '../../redux/store/hooks';
 import { uiState, openCloseDrawer, closeMenu, openMenu } from '../../redux/ui/uiSlice';
+import { authState } from '../../redux/auth/authSlice';
 
 export const AppBar = () => {
     const dispatch = useAppDispatch();
     const { openDrawer, drawerWidth, anchorEl } = useAppSelector(uiState);
+    const { user } = useAppSelector(authState);
 
     const handleDrawerOpen = () => {
         dispatch(openCloseDrawer());
@@ -63,7 +65,7 @@ export const AppBar = () => {
                         }}
                         open={Boolean(anchorEl)}
                         onClose={handleClose}>
-                        <MenuItem>Juan Pablo Martínez</MenuItem>
+                        <MenuItem>{user.name}</MenuItem>
                         <Divider />
                         <MenuItem onClick={handleClose}>Cerrar Sesión</MenuItem>
                     </Menu>
