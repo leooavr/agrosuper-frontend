@@ -33,7 +33,7 @@ export const Login = () => {
 
     useEffect(() => {
         if (isLoading) {
-            console.log('Carganado');
+            console.log('Cargando');
         }
     }, [isLoading]);
 

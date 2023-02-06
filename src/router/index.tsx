@@ -42,7 +42,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <h1>inicio</h1>
+                        element: <h1>Bienvenido a la herramienta de gestion de datos administrada por  la empresa Agrosuper</h1>
                     },
                     {
                         path: 'regions',

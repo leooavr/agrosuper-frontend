@@ -76,7 +76,7 @@ export const Formulario = () => {
                             <TextField
                                 id="phone"
                                 name="phone"
-                                label="Telefono"
+                                label="Password"
                                 type="number"
                                 margin="normal"
                                 fullWidth

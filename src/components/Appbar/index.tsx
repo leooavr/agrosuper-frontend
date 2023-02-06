@@ -63,7 +63,7 @@ export const AppBar = () => {
                         }}
                         open={Boolean(anchorEl)}
                         onClose={handleClose}>
-                        <MenuItem>Juan Pablo Martínez</MenuItem>
+                        <MenuItem>Leonel Villagra Rojas</MenuItem>
                         <Divider />
                         <MenuItem onClick={handleClose}>Cerrar Sesión</MenuItem>
                     </Menu>
