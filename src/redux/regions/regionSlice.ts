@@ -44,7 +44,6 @@ export const { getRegions, isChecking, onFailed } = regionSlice.actions;
 
 export const fecthRegions = (): AppThunk => async (dispatch) => {
     try {
-        console.log('cefcfecec');
         dispatch(isChecking());
         const { data } = await regionsService.getRegions();
         dispatch(getRegions(data));

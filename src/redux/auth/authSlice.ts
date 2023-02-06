@@ -41,6 +41,7 @@ export const authSlice = createSlice({
         },
         loginSucess: (state, action: PayloadAction<any>) => {
             const { payload } = action;
+            console.log(payload);
             state.isAuthenticated = true;
             state.isLoading = false;
             state.user = {
@@ -58,6 +59,7 @@ export const authSlice = createSlice({
             state.isAuthenticated = true;
             state.accessToken = payload.accessToken;
             state.refreshToken = payload.refreshToken;
+            state.user = state.user;
             storageService.setAccessToken(payload.accessToken);
             storageService.setRefreshToken(payload.refreshToken);
         },
