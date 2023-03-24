@@ -3,3 +3,7 @@ export { Login } from './Login';
 export { Formulario } from './Form';
 export { Regions } from './Regions';
 export { Province } from './Provinces';
+export { Commune } from './Communes';
+export { BranchOffices } from './BranchOffices';
+export { Sale } from './Sales';
+export { Client } from './Clients';

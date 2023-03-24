@@ -33,7 +33,6 @@ export const provinceSlice = createSlice({
             const { payload } = action;
             state.provinces = payload.map((province: any) => {
                 const { id, name, region } = province;
-
                 return {
                     id,
                     name,

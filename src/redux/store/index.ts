@@ -1,12 +1,25 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import { uiReducer, authReducer, regionReducer, provinceReducer } from '../';
+import {
+    uiReducer,
+    authReducer,
+    regionReducer,
+    provinceReducer,
+    communeReducer,
+    branchofficeReducer,
+    saleReducer,
+    clientReducer
+} from '../';
 
 export const store = configureStore({
     reducer: {
         ui: uiReducer,
         auth: authReducer,
         regions: regionReducer,
-        provinces: provinceReducer
+        provinces: provinceReducer,
+        communes: communeReducer,
+        branchoffices: branchofficeReducer,
+        sales: saleReducer,
+        clients: clientReducer
     }
 });
 export type AppDispatch = typeof store.dispatch;

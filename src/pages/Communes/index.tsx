@@ -2,26 +2,28 @@ import React, { useEffect } from 'react';
 import { GridColDef } from '@mui/x-data-grid';
 
 import { Table } from '../../components';
-import { provinceState, fecthProvinces } from '../../redux/provinces/provinceSlice';
+import { communeState, fecthCommunes } from '../../redux/communes/communeSlice';
 import { useAppSelector, useAppDispatch } from '../../redux/store/hooks';
 
-export const Province = () => {
-    const columnsProvinces: GridColDef[] = [
-        { field: 'id', headerName: 'Numero', width: 150, flex: 1 },
+export const Commune = () => {
+    const columnsCommunes: GridColDef[] = [
+        { field: 'id', headerName: 'ID', width: 150, flex: 1 },
         { field: 'name', headerName: 'Nombre', width: 150, flex: 1 },
+        { field: 'branchOffice', headerName: 'Sucursal', width: 150, flex: 1 },
+        { field: 'province', headerName: 'Provincia', width: 150, flex: 1 },
         { field: 'region', headerName: 'Region', width: 150, flex: 1 }
     ];
 
     const dispatch = useAppDispatch();
-    const { isLoading, provinces, error } = useAppSelector(provinceState);
+    const { isLoading, communes, error } = useAppSelector(communeState);
 
     useEffect(() => {
-        dispatch(fecthProvinces());
+        dispatch(fecthCommunes());
     }, [dispatch]);
 
     useEffect(() => {
         if (error) {
-            alert('Error provincias');
+            alert('Error comunas');
         }
     }, [error]);
 
@@ -31,5 +33,5 @@ export const Province = () => {
         }
     }, [isLoading]);
 
-    return <Table rows={provinces} columns={columnsProvinces} tableName={'Provincias'} />;
+    return <Table rows={communes} columns={columnsCommunes} tableName={'Comunas'} />;
 };
